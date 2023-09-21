@@ -1,0 +1,10 @@
+{
+  "projectFileVersion": 2,
+  "sourceFiles": [
+    "**/North.yarn"
+  ],
+  "excludeFiles": [],
+  "localisation": {},
+  "baseLanguage": "en",
+  "compilerOptions": {}
+}
