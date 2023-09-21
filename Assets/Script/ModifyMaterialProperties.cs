@@ -40,12 +40,12 @@ public class ModifyMaterialProperties : MonoBehaviour
         }
 
         // Set speed to a negative value when the spacebar is pressed
-        if (Input.GetKeyDown(KeyCode.Space))
+       /* if (Input.GetKeyDown(KeyCode.Space))
         {
             moveDirection = moveDirection * -1;
             SetMaterialSpeed(targetMaterial.GetFloat("_speed"));
            
-        }
+        }*/
 
         if (Input.GetKey(KeyCode.Alpha0))
         {
@@ -164,8 +164,6 @@ public class ModifyMaterialProperties : MonoBehaviour
         float emission = Mathf.Clamp(targetMaterial.GetFloat("_emission") + increment, minEmission, maxEmission);
         targetMaterial.SetFloat("_emission", emission);
     }
-
-
 
     private void ModifySkyMaterialColorR(float increment)
     {

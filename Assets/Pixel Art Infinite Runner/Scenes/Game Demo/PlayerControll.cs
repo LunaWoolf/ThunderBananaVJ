@@ -93,16 +93,20 @@ public class PlayerControll : MonoBehaviour {
                 //make the player jump
                 //faz player pular.
                 PlayerRigidbody.AddForce(new Vector2(0, forcejump));
-
-                //volume
-                //volume
-                audioFont.volume = 0.3f;
-                //play the song
-                //Toca o audio
-				if(soundJump != null)
+				
+				
+				//volume
+				//volume
+				//volume
+				//if (audioFont)
+				//	audioFont.volume = 0.3f;
+				//play the song
+				//Toca o audio
+				if (soundJump != null && audioFont != null)
 					audioFont.PlayOneShot(soundJump);
-                jump = true;
-            }
+
+				//jump = true;
+			}
 
         }
 

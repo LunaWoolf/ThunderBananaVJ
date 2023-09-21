@@ -33,7 +33,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RunnerGrid
+  m_Name: RunnerGrid 1
   m_Shader: {fileID: -6465566751694194690, guid: 6d3039b3126904dd7bbce5681118330a,
     type: 3}
   m_ValidKeywords: []
@@ -117,12 +117,12 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _emission: 5.8
+    - _emission: 2
     - _lineThickness: 0.9
     - _lineThinkness: 0.9
     - _speed: 1
     m_Colors:
-    - _Color: {r: 0.027233878, g: 0.20058776, b: 0.6415094, a: 0.16470589}
+    - _Color: {r: 0.79294235, g: 0.8430395, b: 0.9716981, a: 0.16470589}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GridColor: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 2, g: 2, b: 0, a: 0}
