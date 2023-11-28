@@ -9,6 +9,7 @@ public class DialogueParser : MonoBehaviour
     {
         Up,
         Down,
+        Both,
     }
 
     public struct Line
@@ -47,7 +48,7 @@ public class DialogueParser : MonoBehaviour
 
         foreach (string l in dialogueRawArray)
         {
-            if (l.Contains("//") || l == "" || !l.Contains(":"))
+            if (l.Contains("//") || l == "" || (!l.Contains(":") && !l.Contains("[")) )
                 continue;
 
             tempDialogue.lines.Add(ParseLine(l));
@@ -60,8 +61,13 @@ public class DialogueParser : MonoBehaviour
     public Line ParseLine(string l)
     {
         Line line = new Line();
-      
+
         // Parse Enum
+        if (l.Contains("["))
+        {
+            line.text = l; // funcation
+            return line;
+        }
 
         string[] lineSplit = l.Split(":");
         if (lineSplit[0] != null)
@@ -71,7 +77,7 @@ public class DialogueParser : MonoBehaviour
 
         if (lineSplit[1] != null)
         {
-            line.text = lineSplit[1];
+            line.text = lineSplit[1].Substring(1);
         }
 
         return line;
@@ -88,7 +94,7 @@ public class DialogueParser : MonoBehaviour
                 return Character.Down;
             //break;
             case "A,B":
-                return Character.Down;
+                return Character.Both;
                 //break;
         }
         Debug.LogError("Invalid Character: " + s);

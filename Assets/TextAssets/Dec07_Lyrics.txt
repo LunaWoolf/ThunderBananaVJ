@@ -6,26 +6,24 @@ A: I see the house is filled with dusk,
 A: while the outside is dilapidated
 B: Who is there？
 //开始Glitch,自动走字幕
+[StartGlitch]
 A: ����Ҫ�¨²�ѧϰ������ç”±æœˆè¦�å¥½å¥½å­¦ä¹ å¤©å¤©å�'ä¸Š
 B: ÓÉÔÂÒªºÃºÃÑ§Ï°ÌìÌìÏòÉÏ鐢辨湀瑕佸ソ濂藉涔犲ぉÌìÌìÏòÉÏ鐢辨湀瑕佸ソ涓?
 A: ���ç”±æœ
 B: ä¹ å¤©ÂÒªºÃºÃÑ§Ï�¨²�ѧϰ
 B: ÌìÌìÏòÉÏ鐢辨湀瑕佸ソ藉涔犲ぉÌìÌ
 //结束Glitch,停止自动走字幕
+[StopGlitch]
 //两个人看向镜头,同时说话
-A: Great!
-B: Great!
+A,B: Great!
 A,B: Release your anger
-A: Charles
-B: Charles
+A,B: Charles
 A,B: Train your mouth to learn that shit
 A,B: to learn that shit......
 A,B: life is a paradox
-A: Great!
-B: Great!
+A,B: Great!
 A,B: Release your anger
-A: Charles
-B: Charles
+A,B: Charles
 A,B: Train your mouth......
 A,B: to learn that shit
 A,B: to learn that shit......
@@ -47,8 +45,10 @@ A: Do I need to pray for him?
 A: Is this necessary?(Sir?)
 A: I'm in chaos
 //加入对话框快速震颤效果
+[StartDialogueBoxJitter_Up]
 A: FUCK!!!!
 //结束对话框快速震颤效果
+[StopDialogueBoxJitter_Up]
 A: Just tell your lord
 A: I will hire a 'killer
 A: bring me to there
@@ -57,6 +57,7 @@ B: Here is second phase
 B: Let's record you in the case
 B: This is a spy's revelry(Right?)
 //加入对话框快速震颤效果
+[StartDialogueBoxJitter_Down]
 B: Say!
 B: You failed!
 B: Say!
@@ -66,7 +67,7 @@ B: You failed!!!!!
 B: Say!
 B: You were fucking wrong!!!!!!!
 //结束对话框快速震颤效果
-
+[StopDialogueBoxJitter_Down]
 
 //Virile
 
@@ -110,6 +111,7 @@ A: I will leave......
 
 
 //画面开始下雨、漏雨、漏电
+[StartRain]
 //Hazy Summer Days
 
 B: Here is a story-
@@ -186,11 +188,13 @@ A: I saw my true faith
 A: I saw my true faith destroyed by you
 B: But we don't trust anything
 //开始Glitch,自动走字幕
+[StartGlitch]
 A: ����Ҫ�¨²�ѧϰ������ç”±æœˆè¦�å¥½å¥½å­¦ä¹ å¤©å¤©å�'ä¸Š
 B: ÓÉÔÂÒªºÃºÃÑ§Ï°ÌìÌìÏòÉÏ鐢辨湀瑕佸ソ濂藉涔犲ぉÌìÌìÏòÉÏ鐢辨湀瑕佸ソ涓?
 A: ���ç”±æœ
 B: ä¹ å¤©ÂÒªºÃºÃÑ§Ï�¨²�ѧϰ
 //结束Glitch,停止自动走字幕
+[StopGlitch]
 A: They told us not to try!!
 A: They will solve this problem!!
 A: We just need to sit in the classroom!!
@@ -200,6 +204,7 @@ A: I was......
 
 
 //屏幕出现光标,自动移动到画面里的屏幕上的中英切换按钮,全部画面开始Glitch
+[SwitchLanguage]
 //劣势高地
 
 A: 三个道士死于一场大火
@@ -227,7 +232,7 @@ A: 我等着看呢!!
 A: 我等着看呢!!!!
 A: 我等着看呢!!!!!!!
 A: 我等着看呢!!!!!!!!!
-
+[StartGlitch]
 A: 最后一次
 B: 冲出重围
 A: 竭力保持速度平衡
@@ -241,9 +246,10 @@ A: 直到大火吞没三个道士的背影
 B: 真相......
 B: 真相 终 被 灾 难 揭 开
 //结束Glitch
-
+[StopGlitch]
 
 //开始迷幻
+[StartLSD]
 //北方飓风与未解之谜
 
 A: 当漫天星宿划过指尖
@@ -273,6 +279,7 @@ A: 响起
 B: 穿透了炽热的身体的交汇......
 B: 亵渎着性爱与被破坏的胴体......
 //结束迷幻，一股阳光照射进来
+[StopLSD]
 A,B: 放弃吧!
 A,B: 浪费吧!
 A,B: 撕裂!!
