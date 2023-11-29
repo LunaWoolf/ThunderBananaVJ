@@ -65,6 +65,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     [SerializeField] float typewriterEffectSpeed = 20f;
     CoroutineInterruptToken currentStopToken = new CoroutineInterruptToken();
     public Text lineText = null;
+    public float autoLoadConversationCoolDown = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -168,7 +169,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
         }
     }
 
-    public static IEnumerator Typewriter(TextMeshProUGUI text, float lettersPerSecond,  CoroutineInterruptToken stopToken = null)
+    public IEnumerator Typewriter(TextMeshProUGUI text, float lettersPerSecond,  CoroutineInterruptToken stopToken = null)
     {
         stopToken?.Start();
 
@@ -230,6 +231,11 @@ public class ConversationManager : MonoSingleton<ConversationManager>
         // interrupted. Either way, display everything now.
         text.maxVisibleCharacters = characterCount;
 
+        if (currentConversationState == ConversationState.AutoProgress)
+        {
+            yield return new WaitForSeconds(autoLoadConversationCoolDown);
+            LoadNextLineInCurrentDialogue();
+        }
         stopToken?.Complete();
     }
 
@@ -283,11 +289,14 @@ public class ConversationManager : MonoSingleton<ConversationManager>
 
     public void StartGlitch()
     {
+        currentConversationState = ConversationState.AutoProgress;
+        LoadNextLineInCurrentDialogue();
         Debug.Log("Start Glitch");
     }
 
     public void StopGlitch()
     {
+        currentConversationState = ConversationState.SpaceProgress;
         Debug.Log("Stop Glitch");
     }
 
