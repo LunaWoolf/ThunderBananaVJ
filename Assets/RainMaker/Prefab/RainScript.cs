@@ -21,6 +21,7 @@ namespace DigitalRuby.RainMaker
 
         private void UpdateRain()
         {
+            Debug.Log("rain");
             // keep rain and mist above the player
             if (RainFallParticleSystem != null)
             {
@@ -65,8 +66,10 @@ namespace DigitalRuby.RainMaker
         protected override void Update()
         {
             base.Update();
-
+           
             UpdateRain();
         }
+
+       
     }
 }

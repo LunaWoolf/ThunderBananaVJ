@@ -243,6 +243,7 @@ namespace DigitalRuby.RainMaker
                 rainMaterial = new Material(rainRenderer.material);
                 rainMaterial.EnableKeyword("SOFTPARTICLES_OFF");
                 rainRenderer.material = rainMaterial;
+                RainFallParticleSystem.Play();
             }
             if (RainExplosionParticleSystem != null)
             {
@@ -252,6 +253,7 @@ namespace DigitalRuby.RainMaker
                 rainExplosionMaterial = new Material(rainRenderer.material);
                 rainExplosionMaterial.EnableKeyword("SOFTPARTICLES_OFF");
                 rainRenderer.material = rainExplosionMaterial;
+                RainExplosionParticleSystem.Play();
             }
             if (RainMistParticleSystem != null)
             {
@@ -269,6 +271,7 @@ namespace DigitalRuby.RainMaker
                     rainMistMaterial.EnableKeyword("SOFTPARTICLES_OFF");
                 }
                 rainRenderer.material = rainMistMaterial;
+                RainMistParticleSystem.Play();
             }
         }
 
@@ -284,6 +287,7 @@ namespace DigitalRuby.RainMaker
             }
 
 #endif
+
 
             CheckForRainChange();
             UpdateWind();
@@ -309,6 +313,21 @@ namespace DigitalRuby.RainMaker
                 return true;
             }
         }
+
+        public void Pause()
+        {
+            RainFallParticleSystem.Pause();
+            RainExplosionParticleSystem.Pause();
+            RainMistParticleSystem.Pause();
+        }
+
+        public void RePlay()
+        {
+            RainFallParticleSystem.Play();
+            RainExplosionParticleSystem.Play();
+            RainMistParticleSystem.Play();
+        }
+    
     }
 
     /// <summary>

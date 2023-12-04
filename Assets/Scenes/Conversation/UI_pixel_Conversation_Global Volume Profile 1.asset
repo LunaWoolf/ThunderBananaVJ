@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Value: 240
   opacity:
     m_OverrideState: 1
-    m_Value: 0.76
+    m_Value: 0.614
   dither:
     m_OverrideState: 0
     m_Value: 1
@@ -118,7 +118,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   GlobalPostProcessingSettings:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
 --- !u!114 &11400000
 MonoBehaviour:

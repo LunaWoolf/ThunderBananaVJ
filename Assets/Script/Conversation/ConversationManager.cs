@@ -8,6 +8,7 @@ using UnityEngine.Playables;
 using UnityEngine.Rendering.PostProcessing;
 using RetroLookPro.Enums;
 using LimitlessDev.RetroLookPro;
+using DigitalRuby.RainMaker;
 
 public class ConversationManager : MonoSingleton<ConversationManager>
 {
@@ -73,6 +74,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
 
     [Header("Rain")]
     [SerializeField] GameObject RainPerfab;
+    [SerializeField] GameObject videoPlayer_Rain;
     bool isRaining = false;
 
     [Header("LSD")]
@@ -172,6 +174,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
                         typewriterEffectSpeed,
                         currentStopToken
                     ));
+
                 break;
             case DialogueParser.Character.Down:
                 DownCharacterTM.text = currentLine.text;
@@ -180,6 +183,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
                        typewriterEffectSpeed,
                        currentStopToken
                    ));
+             
                 break;
             case DialogueParser.Character.Both:
                 UpCharacterTM.text = currentLine.text;
@@ -368,16 +372,24 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     {
         Debug.Log("Start Rain");
         isRaining = true;
-        RainPerfab.SetActive(true);
+        if(!RainPerfab.activeSelf) RainPerfab.SetActive(true);
+        RainPerfab.GetComponent<RainScript>().RePlay();
         videoRawImageRef.texture = RainTexture;
+        videoRawImageRef.color = new Color(0.3915094f, 0.4188518f, 1, .5f);
+
+        videoPlayer_Rain.SetActive(true);
     }
 
     public void StopRain()
     {
         Debug.Log("Stop Rain");
         isRaining = false;
-        RainPerfab.SetActive(false);
+       // RainPerfab.SetActive(false);
+        RainPerfab.GetComponent<RainScript>().Pause();
+
         videoRawImageRef.texture = DefaultTexture;
+        videoRawImageRef.color = new Color(1f,1f, 1f, 1f);
+        videoPlayer_Rain.SetActive(false);
     }
 
     public void StartLSD()
