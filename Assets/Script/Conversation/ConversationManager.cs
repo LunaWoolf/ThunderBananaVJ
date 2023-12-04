@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using TMPro;
+using UnityEngine.Playables;
+using UnityEngine.Rendering.PostProcessing;
+using RetroLookPro.Enums;
+using LimitlessDev.RetroLookPro;
 
 public class ConversationManager : MonoSingleton<ConversationManager>
 {
@@ -67,11 +71,29 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     public Text lineText = null;
     public float autoLoadConversationCoolDown = 0.1f;
 
+    [Header("Rain")]
+    [SerializeField] GameObject RainPerfab;
+    bool isRaining = false;
+
+    [Header("LSD")]
+    bool isLSD = false;
+    [SerializeField] GameObject LSDGameObject;
+
+    [Header("VideoReference")]
+    [SerializeField] RawImage videoRawImageRef;
+    [SerializeField] RenderTexture DefaultTexture;
+    [SerializeField] RenderTexture RainTexture;
+    [SerializeField] RenderTexture LSDTexture;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         originalPosition_Up = UpperDialogueGameObject.anchoredPosition3D;
         originalPosition_Down = DownDialogueGameObject.anchoredPosition3D;
+        DownCharacterTM.text = "   ";
+        UpCharacterTM.text = "   ";
     }
 
     // Update is called once per frame
@@ -104,6 +126,22 @@ public class ConversationManager : MonoSingleton<ConversationManager>
 
             // Smoothly move the UI element towards the new position
             DownDialogueGameObject.anchoredPosition3D = Vector3.Lerp(DownDialogueGameObject.anchoredPosition3D, jitteredPosition, Time.deltaTime * jitterSpeed);
+        }
+
+        //Debug
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (isRaining) StopRain();
+            else StartRain();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            if (isLSD) StopLSD();
+            else StartLSD();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SwitchLanguage();
         }
     }
 
@@ -310,6 +348,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     {
         Debug.Log("Stop Dialogue Box Jitter");
         bjitterUpDialogueGameObject = false;
+        UpperDialogueGameObject.anchoredPosition3D = originalPosition_Up;
     }
 
     public void StartDialogueBoxJitter_Down()
@@ -322,31 +361,63 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     {
         Debug.Log("Stop Dialogue Box Jitter");
         bjitterDownDialogueGameObject = false;
+        DownDialogueGameObject.anchoredPosition3D = originalPosition_Down;
     }
 
     public void StartRain()
     {
         Debug.Log("Start Rain");
+        isRaining = true;
+        RainPerfab.SetActive(true);
+        videoRawImageRef.texture = RainTexture;
     }
 
     public void StopRain()
     {
         Debug.Log("Stop Rain");
+        isRaining = false;
+        RainPerfab.SetActive(false);
+        videoRawImageRef.texture = DefaultTexture;
     }
 
     public void StartLSD()
     {
         Debug.Log("Start LSD");
+        EnableColormapPalette(false);
+        isLSD = true;
+        LSDGameObject.SetActive(true);
+        videoRawImageRef.texture = LSDTexture;
     }
 
     public void StopLSD()
     {
         Debug.Log("Stop LSD");
+        EnableColormapPalette(true);
+        isLSD = false;
+        LSDGameObject.SetActive(false);
+        videoRawImageRef.texture = DefaultTexture;
+        
     }
 
     public void SwitchLanguage()
     {
         Debug.Log("Switch Language");
+        StartLSD();
+        this.GetComponent<PlayableDirector>().enabled = true;
+        this.GetComponent<PlayableDirector>().Play();
+     
+    }
+
+    [SerializeField] GameObject PixelPostProcessing;
+    [SerializeField] PostProcessProfile postProcessProfile;
+    [SerializeField] ColormapPalette _ColormapPalette;
+
+    public void EnableColormapPalette(bool isOn)
+    {
+        //postProcessProfile.GetSetting<ColormapPalette_RLPRO>().
+       // _ColormapPalette.active = isOn;
+        PixelPostProcessing.SetActive(isOn);
+
     }
 
 }
