@@ -60,6 +60,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     public RectTransform DownDialogueGameObject;
     public UnityEngine.UI.Image OverlayImage;
     public UnityEngine.UI.Image OverlayBackImage;
+    public GameObject DigitalRain;
 
     [Header("Jitter")]
     public float jitterAmount = 5f; // Adjust the amount of jitter as needed
@@ -433,6 +434,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
         Debug.Log("Start LSD");
         EnableColormapPalette(false);
         isLSD = true;
+        DigitalRain.SetActive(false);
         LSDGameObject.SetActive(true);
         videoRawImageRef.texture = LSDTexture;
     }
@@ -442,6 +444,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
         Debug.Log("Stop LSD");
         EnableColormapPalette(true);
         isLSD = false;
+        DigitalRain.SetActive(true);
         LSDGameObject.SetActive(false);
         videoRawImageRef.texture = DefaultTexture;
         
@@ -476,7 +479,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
 
     public void FadeBlack()
     {
-        OverlayBackImage.color = new Color(0f, 0f, 0f, OverlayBackImage.color.a + 0.2f);
+        OverlayBackImage.color = new Color(0f, 0f, 0f, OverlayBackImage.color.a + 0.3f);
     }
 
     public void ChangeToRed()
