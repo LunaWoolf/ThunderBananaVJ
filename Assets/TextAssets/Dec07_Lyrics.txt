@@ -1,5 +1,6 @@
+[Song 0]
 //Charles？
-
+B: Start
 A: I am a sinner who opened......
 A: opened the unlocked door.
 A: I see the house is filled with dusk,
@@ -29,10 +30,10 @@ A,B: to learn that shit
 A,B: to learn that shit......
 A: Sarcasm ends
 B: tyranny begins......
+[EndOfSong]
 
-
+[Song 1]
 //The Verb
-
 A: Bring it to there,I will leave it
 B: (But)That's just first phase
 B: He could see her gone
@@ -68,9 +69,10 @@ B: Say!
 B: You were fucking wrong!!!!!!!
 //结束对话框快速震颤效果
 [StopDialogueBoxJitter_Down]
+[EndOfSong]
 
+[Song 2]
 //Virile
-
 A: She......
 A: Brings me to there
 //手指指向左上角
@@ -96,6 +98,7 @@ B: You said
 A: I wanted you,but you wanted her
 A: So I really really really don't know how you felt
 B: (Enough!)I wanna stop!!
+//missing part?
 B: I helped you talk,I helped you think
 B: But I really really really don't know how I felt
 B: "Is that real?"
@@ -108,12 +111,12 @@ A: She said.
 A: I don't even know who I am
 A: Under cover of the moonlight
 A: I will leave......
+[EndOfSong]
 
-
+[Song 3]
 //画面开始下雨、漏雨、漏电
 [StartRain]
 //Hazy Summer Days
-
 B: Here is a story-
 B: Between the height of summer and cruelty of winter
 B: They won't forget this scene
@@ -148,7 +151,7 @@ B: This rain has been stretching into the eyes
 A: So no!
 A: Nightmare
 A: attack to my......
-A: my dream
+A: my dream  
 B: (I saw her)Lost on the sidewalk
 A: You found my greatest things
 A: I don't understand why you're throwing it away
@@ -168,10 +171,11 @@ A: Hate......
 A: So long
 A: So I......
 A: No......
+[EndOfSong]
 
-
+[Song 4]
 //乐观主义白痴
-
+[EndRain]
 A: I saw my true faith
 A: I saw my true faith destroyed by you
 B: But we don't trust anything
@@ -201,12 +205,12 @@ A: We just need to sit in the classroom!!
 A: They told us not to try......
 A: They will solve this problem......
 A: I was......
-
-
+[EndOfSong]
 //屏幕出现光标,自动移动到画面里的屏幕上的中英切换按钮,全部画面开始Glitch
 [SwitchLanguage]
-//劣势高地
 
+[Song 5]
+//劣势高地
 A: 三个道士死于一场大火
 A: 而灾难的中心是乌托邦的轮廓
 A: 在不断被交换和考量中
@@ -214,7 +218,6 @@ A: 母亲将我欺骗
 A: 而父亲将我审判
 B: 无限黄昏的聚会......
 A: 狡诈的公羊一头撞向大山深处
-
 A: 大山深处
 B: “我不相信你。”
 B: 她如是说道
@@ -222,7 +225,6 @@ A: 把边陲小城的人伪装成秩序
 A: 用丰满的信息将我推入陷阱
 A: 最伟大的世界就是最伟大的骗局
 A: 最伟大的世界就是你们笨拙的嘴脸。
-
 A: 你们的神设置了无数轮回
 A: 冒昧
 A: 偏见
@@ -247,11 +249,12 @@ B: 真相......
 B: 真相 终 被 灾 难 揭 开
 //结束Glitch
 [StopGlitch]
+[EndOfSong]
 
+[Song 6]
 //开始迷幻
 [StartLSD]
 //北方飓风与未解之谜
-
 A: 当漫天星宿划过指尖
 A: 当纯白色的宿命在脑中响起
 A: 当胸腔生起呻吟
@@ -281,14 +284,19 @@ B: 亵渎着性爱与被破坏的胴体......
 //结束迷幻，一股阳光照射进来
 [StopLSD]
 A,B: 放弃吧!
+[FadeToBlack]
 A,B: 浪费吧!
 A,B: 撕裂!!
+[FadeToBlack]
 A,B: 和众神的蔑视!!
 A,B: 放弃吧!
+[FadeToBlack]
 A,B: 浪费吧!
 A,B: 撕裂!!!!
+[FadeToBlack]
 A,B: 和众神的蔑视......
 //上面这一段需要渐暗，黑屏，气口之后一瞬间变成红色，一颗种子快速长成苍天大树
+[ChangeToRed]
 B: 有时我真的觉得这里是一片蛮荒之森
 B: 可冲动的无垠却一次又一次地将我抚慰
 A: 我看见!英雄拔剑斩断的是在矛盾上热烈盛开的花

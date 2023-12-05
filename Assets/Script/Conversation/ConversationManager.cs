@@ -20,7 +20,6 @@ public class ConversationManager : MonoSingleton<ConversationManager>
 
     public class CoroutineInterruptToken
     {
-
         /// <summary>
         /// The state that the token is in.
         /// </summary>
@@ -55,8 +54,12 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     [Header("UI Reference")]
     [SerializeField] TextMeshProUGUI UpCharacterTM;
     [SerializeField] TextMeshProUGUI DownCharacterTM;
+    public GameObject UpperDialogueBox;
+    public GameObject DownDialogueBox;
     public RectTransform UpperDialogueGameObject;
     public RectTransform DownDialogueGameObject;
+    public UnityEngine.UI.Image OverlayImage;
+    public UnityEngine.UI.Image OverlayBackImage;
 
     [Header("Jitter")]
     public float jitterAmount = 5f; // Adjust the amount of jitter as needed
@@ -65,6 +68,11 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     private Vector3 originalPosition_Down;
     public bool bjitterUpDialogueGameObject;
     public bool bjitterDownDialogueGameObject;
+
+    [Header("Glitch")]
+    bool isGlitchTextCutOff = false;
+    int StartGlitchIndex = 0;
+    int GlitchCutOffIndex = 1;
 
     [Header("TypeWriter")]
     [SerializeField] float typewriterEffectSpeed = 20f;
@@ -109,6 +117,15 @@ public class ConversationManager : MonoSingleton<ConversationManager>
                 Debug.Log("Load Next Dialogue");
             }
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (isGlitchTextCutOff == true)
+                    StopGlitch();
+            }
+       
+        }
 
         if (bjitterUpDialogueGameObject)
         {
@@ -145,6 +162,13 @@ public class ConversationManager : MonoSingleton<ConversationManager>
         {
             SwitchLanguage();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) { if (currentDialogue.songLineIndex.Count > 0) currentDialogueLineIndex = currentDialogue.songLineIndex[0]; EndOfSong(); }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) { if (currentDialogue.songLineIndex.Count > 1) currentDialogueLineIndex = currentDialogue.songLineIndex[1]; EndOfSong(); }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) { if (currentDialogue.songLineIndex.Count > 2) currentDialogueLineIndex = currentDialogue.songLineIndex[2]; EndOfSong(); }
+        if (Input.GetKeyDown(KeyCode.Alpha4)) { if (currentDialogue.songLineIndex.Count > 3) currentDialogueLineIndex = currentDialogue.songLineIndex[3]; EndOfSong(); }
+        if (Input.GetKeyDown(KeyCode.Alpha5)) { if (currentDialogue.songLineIndex.Count > 4) currentDialogueLineIndex = currentDialogue.songLineIndex[4]; EndOfSong(); }
+        if (Input.GetKeyDown(KeyCode.Alpha6)) { if (currentDialogue.songLineIndex.Count > 5) currentDialogueLineIndex = currentDialogue.songLineIndex[5]; EndOfSong(); }
+        if (Input.GetKeyDown(KeyCode.Alpha7)) { if (currentDialogue.songLineIndex.Count > 6) currentDialogueLineIndex = currentDialogue.songLineIndex[6]; EndOfSong(); }
     }
 
     void LoadNextLineInCurrentDialogue()
@@ -174,7 +198,8 @@ public class ConversationManager : MonoSingleton<ConversationManager>
                         typewriterEffectSpeed,
                         currentStopToken
                     ));
-
+                UpperDialogueBox.SetActive(true);
+              
                 break;
             case DialogueParser.Character.Down:
                 DownCharacterTM.text = currentLine.text;
@@ -183,7 +208,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
                        typewriterEffectSpeed,
                        currentStopToken
                    ));
-             
+                DownDialogueBox.SetActive(true);
                 break;
             case DialogueParser.Character.Both:
                 UpCharacterTM.text = currentLine.text;
@@ -199,6 +224,8 @@ public class ConversationManager : MonoSingleton<ConversationManager>
                    typewriterEffectSpeed,
                    currentStopToken
                ));
+                UpperDialogueBox.SetActive(true);
+                DownDialogueBox.SetActive(true);
                 break;
 
         }
@@ -219,9 +246,6 @@ public class ConversationManager : MonoSingleton<ConversationManager>
      
         text.maxVisibleCharacters = 0;
 
-        // Wait a single frame to let the text component process its
-        // content, otherwise text.textInfo.characterCount won't be
-        // accurate
         yield return null;
 
         // How many visible characters are present in the text?
@@ -238,16 +262,6 @@ public class ConversationManager : MonoSingleton<ConversationManager>
 
         // Convert 'letters per second' into its inverse
         float secondsPerLetter = 1.0f / lettersPerSecond;
-
-        // If lettersPerSecond is larger than the average framerate, we
-        // need to show more than one letter per frame, so simply
-        // adding 1 letter every secondsPerLetter won't be good enough
-        // (we'd cap out at 1 letter per frame, which could be slower
-        // than the user requested.)
-        //
-        // Instead, we'll accumulate time every frame, and display as
-        // many letters in that frame as we need to in order to achieve
-        // the requested speed.
         var accumulator = Time.deltaTime;
 
         while (text.maxVisibleCharacters < characterCount)
@@ -290,7 +304,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
                 StartGlitch();
                 return;
             case "StopGlitch":
-                StopGlitch();
+                EndGlitchText();
                 return;
             case "StartDialogueBoxJitter_Up":
                 StartDialogueBoxJitter_Up();
@@ -319,28 +333,49 @@ public class ConversationManager : MonoSingleton<ConversationManager>
             case "SwitchLanguage":
                 SwitchLanguage();
                 return;
+            case "EndOfSong":
+                EndOfSong();
+                return;
+            case "FadeToBlack":
+                FadeBlack();
+                return;
+            case "ChangeToRed":
+                ChangeToRed();
+                return;
+
         }
 
         Debug.Log("Error Command " + eventName);
+        LoadNextLineInCurrentDialogue();
     }
 
-    public void FadeToDark()
-    { 
-    
-    }
+   
 
     public void StartGlitch()
     {
         currentConversationState = ConversationState.AutoProgress;
+        StartGlitchIndex = currentDialogueLineIndex;
         LoadNextLineInCurrentDialogue();
         Debug.Log("Start Glitch");
     }
 
     public void StopGlitch()
     {
+        currentDialogueLineIndex = GlitchCutOffIndex;
+        isGlitchTextCutOff = false;
         currentConversationState = ConversationState.SpaceProgress;
         Debug.Log("Stop Glitch");
     }
+    public void EndGlitchText()
+    {
+        isGlitchTextCutOff = true;
+        GlitchCutOffIndex = currentDialogueLineIndex;
+        currentDialogueLineIndex = StartGlitchIndex;
+        LoadNextLineInCurrentDialogue();
+        // currentConversationState = ConversationState.SpaceProgress;
+        Debug.Log("GlitchText Cutoff");
+    }
+
 
     public void StartDialogueBoxJitter_Up()
     {
@@ -376,7 +411,8 @@ public class ConversationManager : MonoSingleton<ConversationManager>
         RainPerfab.GetComponent<RainScript>().RePlay();
         videoRawImageRef.texture = RainTexture;
         videoRawImageRef.color = new Color(0.3915094f, 0.4188518f, 1, .5f);
-
+        //cover the character
+        OverlayImage.color = new Color(0f, 0.2f, 0.8f, 0.3f);
         videoPlayer_Rain.SetActive(true);
     }
 
@@ -432,4 +468,20 @@ public class ConversationManager : MonoSingleton<ConversationManager>
 
     }
 
+    public void EndOfSong()
+    {
+        UpperDialogueBox.SetActive(false);
+        DownDialogueBox.SetActive(false);
+    }
+
+    public void FadeBlack()
+    {
+        OverlayBackImage.color = new Color(0f, 0f, 0f, OverlayBackImage.color.a + 0.2f);
+    }
+
+    public void ChangeToRed()
+    {
+        OverlayBackImage.color = new Color(1f, 0f, 0f, 0.8f);
+    }
+   
 }

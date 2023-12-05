@@ -1,6 +1,141 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7165414832419990376
+--- !u!114 &-7383670255102797313
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 0
+  color:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.022
+  smoothness:
+    m_OverrideState: 0
+    m_Value: 0.2
+  rounded:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &-3518114514663577145
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97f4d109a8084623877cbceadbb3b74, type: 3}
+  m_Name: ColormapPalette
+  m_EditorClassIdentifier: 
+  active: 1
+  enable:
+    m_OverrideState: 1
+    m_Value: 1
+  pixelSize:
+    m_OverrideState: 1
+    m_Value: 240
+  opacity:
+    m_OverrideState: 1
+    m_Value: 0.614
+  dither:
+    m_OverrideState: 0
+    m_Value: 1
+  presetsList:
+    m_OverrideState: 1
+    m_Value: {fileID: 11400000, guid: dd7382c28c09da7428be888044bba323, type: 2}
+  presetIndex:
+    m_OverrideState: 1
+    m_Value: 1
+  bluenoise:
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: 0f7538ff15051d14c9a387d4773180bc, type: 3}
+    dimension: 1
+  mask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  maskChannel:
+    m_OverrideState: 0
+    m_Value: 0
+  GlobalPostProcessingSettings:
+    m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &-1539863491189193363
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7942413263386430284c3a24e8e45f75, type: 3}
+  m_Name: Jitter
+  m_EditorClassIdentifier: 
+  active: 0
+  enable:
+    m_OverrideState: 1
+    m_Value: 1
+  twitchHorizontal:
+    m_OverrideState: 1
+    m_Value: 0
+  horizontalFreq:
+    m_OverrideState: 0
+    m_Value: 1
+  twitchVertical:
+    m_OverrideState: 0
+    m_Value: 0
+  verticalFreq:
+    m_OverrideState: 0
+    m_Value: 1
+  stretch:
+    m_OverrideState: 0
+    m_Value: 0
+  stretchResolution:
+    m_OverrideState: 0
+    m_Value: 1
+  jitterHorizontal:
+    m_OverrideState: 0
+    m_Value: 0
+  jitterHorizontalAmount:
+    m_OverrideState: 0
+    m_Value: 1
+  jitterVertical:
+    m_OverrideState: 0
+    m_Value: 0
+  jitterVerticalAmount:
+    m_OverrideState: 0
+    m_Value: 1
+  jitterVerticalSpeed:
+    m_OverrideState: 0
+    m_Value: 1
+  unscaledTime:
+    m_OverrideState: 0
+    m_Value: 0
+  mask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  maskChannel:
+    m_OverrideState: 0
+    m_Value: 0
+  GlobalPostProcessingSettings:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &-1451699114003711097
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,15 +147,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ece09b57fde18445b241e21a99082d4, type: 3}
   m_Name: VHSEffect
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enable:
     m_OverrideState: 1
     m_Value: 1
   colorOffset:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 4
   colorOffsetAngle:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   verticalOffsetFrequency:
     m_OverrideState: 0
@@ -75,113 +210,6 @@ MonoBehaviour:
   GlobalPostProcessingSettings:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &-4293753336891535080
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7942413263386430284c3a24e8e45f75, type: 3}
-  m_Name: Jitter
-  m_EditorClassIdentifier: 
-  active: 0
-  enable:
-    m_OverrideState: 1
-    m_Value: 1
-  twitchHorizontal:
-    m_OverrideState: 0
-    m_Value: 0
-  horizontalFreq:
-    m_OverrideState: 0
-    m_Value: 1
-  twitchVertical:
-    m_OverrideState: 0
-    m_Value: 0
-  verticalFreq:
-    m_OverrideState: 0
-    m_Value: 1
-  stretch:
-    m_OverrideState: 0
-    m_Value: 0
-  stretchResolution:
-    m_OverrideState: 0
-    m_Value: 1
-  jitterHorizontal:
-    m_OverrideState: 0
-    m_Value: 0
-  jitterHorizontalAmount:
-    m_OverrideState: 0
-    m_Value: 1
-  jitterVertical:
-    m_OverrideState: 0
-    m_Value: 0
-  jitterVerticalAmount:
-    m_OverrideState: 0
-    m_Value: 1
-  jitterVerticalSpeed:
-    m_OverrideState: 0
-    m_Value: 1
-  unscaledTime:
-    m_OverrideState: 0
-    m_Value: 0
-  mask:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-    dimension: 1
-  maskChannel:
-    m_OverrideState: 0
-    m_Value: 0
-  GlobalPostProcessingSettings:
-    m_OverrideState: 0
-    m_Value: 0
---- !u!114 &-2807894212612607058
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97f4d109a8084623877cbceadbb3b74, type: 3}
-  m_Name: ColormapPalette
-  m_EditorClassIdentifier: 
-  active: 1
-  enable:
-    m_OverrideState: 1
-    m_Value: 1
-  pixelSize:
-    m_OverrideState: 1
-    m_Value: 240
-  opacity:
-    m_OverrideState: 1
-    m_Value: 0.614
-  dither:
-    m_OverrideState: 0
-    m_Value: 1
-  presetsList:
-    m_OverrideState: 1
-    m_Value: {fileID: 11400000, guid: dd7382c28c09da7428be888044bba323, type: 2}
-  presetIndex:
-    m_OverrideState: 1
-    m_Value: 1
-  bluenoise:
-    m_OverrideState: 1
-    m_Value: {fileID: 2800000, guid: 0f7538ff15051d14c9a387d4773180bc, type: 3}
-    dimension: 1
-  mask:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-    dimension: 1
-  maskChannel:
-    m_OverrideState: 0
-    m_Value: 0
-  GlobalPostProcessingSettings:
-    m_OverrideState: 1
-    m_Value: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,14 +220,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: UI_pixel_Conversation_Global Volume Profile 1
+  m_Name: Head_Conversation_Global Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: -7165414832419990376}
-  - {fileID: 8168199012049173334}
-  - {fileID: -2807894212612607058}
-  - {fileID: -4293753336891535080}
---- !u!114 &8168199012049173334
+  - {fileID: -1451699114003711097}
+  - {fileID: -7383670255102797313}
+  - {fileID: -3518114514663577145}
+  - {fileID: 4298822797878935333}
+  - {fileID: -1539863491189193363}
+--- !u!114 &4298822797878935333
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,22 +237,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
-  m_Name: Vignette
+  m_Script: {fileID: 11500000, guid: be08dc541b09a4e5b9f25c9c59460eb6, type: 3}
+  m_Name: LimitlessGlitch3
   m_EditorClassIdentifier: 
-  active: 0
-  color:
+  active: 1
+  enable:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
-  center:
+    m_Value: 1
+  speed:
     m_OverrideState: 0
-    m_Value: {x: 0.5, y: 0.5}
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.022
-  smoothness:
+    m_Value: 1
+  blockSize:
     m_OverrideState: 0
-    m_Value: 0.2
-  rounded:
+    m_Value: 1
+  maxOffsetX:
+    m_OverrideState: 0
+    m_Value: 1
+  maxOffsetY:
+    m_OverrideState: 0
+    m_Value: 1
+  mask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  maskChannel:
+    m_OverrideState: 0
+    m_Value: 0
+  GlobalPostProcessingSettings:
     m_OverrideState: 0
     m_Value: 0

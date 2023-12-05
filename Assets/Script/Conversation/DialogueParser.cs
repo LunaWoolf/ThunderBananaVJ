@@ -21,6 +21,7 @@ public class DialogueParser : MonoBehaviour
     public struct Dialogue
     {
         public List<Line> lines;
+        public List<int> songLineIndex;
     }
 
     [Header("Dialogue Ref")]
@@ -45,13 +46,19 @@ public class DialogueParser : MonoBehaviour
         string[] dialogueRawArray = DialogueRef.text.Split("\n");
         Dialogue tempDialogue = new Dialogue();
         tempDialogue.lines = new List<Line>();
-
+        tempDialogue.songLineIndex = new List<int>();
         foreach (string l in dialogueRawArray)
         {
             if (l.Contains("//") || l == "" || (!l.Contains(":") && !l.Contains("[")) )
                 continue;
 
             tempDialogue.lines.Add(ParseLine(l));
+
+            if (l.Contains("[Song"))
+            {
+                tempDialogue.songLineIndex.Add(tempDialogue.lines.Count -1);
+            }
+           
         }
 
         ConversationManager.instance.currentDialogue = tempDialogue;
