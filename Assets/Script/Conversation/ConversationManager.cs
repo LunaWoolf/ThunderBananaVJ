@@ -96,11 +96,14 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     [SerializeField] RenderTexture RainTexture;
     [SerializeField] RenderTexture LSDTexture;
 
-
+    [Header("End")]
+    [SerializeField] PlayableAsset EndTimeline;
+    [SerializeField] PlayableAsset SwitchTimeline;
 
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 25;
         originalPosition_Up = UpperDialogueGameObject.anchoredPosition3D;
         originalPosition_Down = DownDialogueGameObject.anchoredPosition3D;
         DownCharacterTM.text = "   ";
@@ -163,6 +166,11 @@ public class ConversationManager : MonoSingleton<ConversationManager>
         {
             SwitchLanguage();
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            End();
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1)) { if (currentDialogue.songLineIndex.Count > 0) currentDialogueLineIndex = currentDialogue.songLineIndex[0]; EndOfSong(); }
         if (Input.GetKeyDown(KeyCode.Alpha2)) { if (currentDialogue.songLineIndex.Count > 1) currentDialogueLineIndex = currentDialogue.songLineIndex[1]; EndOfSong(); }
         if (Input.GetKeyDown(KeyCode.Alpha3)) { if (currentDialogue.songLineIndex.Count > 2) currentDialogueLineIndex = currentDialogue.songLineIndex[2]; EndOfSong(); }
@@ -343,6 +351,10 @@ public class ConversationManager : MonoSingleton<ConversationManager>
             case "ChangeToRed":
                 ChangeToRed();
                 return;
+            case "END":
+                End();
+                return;
+
 
         }
 
@@ -408,8 +420,8 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     {
         Debug.Log("Start Rain");
         isRaining = true;
-        if(!RainPerfab.activeSelf) RainPerfab.SetActive(true);
-        RainPerfab.GetComponent<RainScript>().RePlay();
+        //if(!RainPerfab.activeSelf) RainPerfab.SetActive(true);
+        //RainPerfab.GetComponent<RainScript>().RePlay();
         videoRawImageRef.texture = RainTexture;
         videoRawImageRef.color = new Color(0.3915094f, 0.4188518f, 1, .5f);
         //cover the character
@@ -422,10 +434,11 @@ public class ConversationManager : MonoSingleton<ConversationManager>
         Debug.Log("Stop Rain");
         isRaining = false;
        // RainPerfab.SetActive(false);
-        RainPerfab.GetComponent<RainScript>().Pause();
+       // RainPerfab.GetComponent<RainScript>().Pause();
 
         videoRawImageRef.texture = DefaultTexture;
         videoRawImageRef.color = new Color(1f,1f, 1f, 1f);
+        OverlayImage.color = new Color(0f, 0.2f, 0.8f, 0f);
         videoPlayer_Rain.SetActive(false);
     }
 
@@ -454,6 +467,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     {
         Debug.Log("Switch Language");
         StartLSD();
+        this.GetComponent<PlayableDirector>().playableAsset = SwitchTimeline;
         this.GetComponent<PlayableDirector>().enabled = true;
         this.GetComponent<PlayableDirector>().Play();
      
@@ -486,5 +500,14 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     {
         OverlayBackImage.color = new Color(1f, 0f, 0f, 0.8f);
     }
-   
+
+    public void End()
+    {
+        Debug.Log("ReachEnd");
+        UpperDialogueBox.gameObject.SetActive(false);
+        DownDialogueBox.gameObject.SetActive(false);
+        this.GetComponent<PlayableDirector>().playableAsset = EndTimeline;
+        this.GetComponent<PlayableDirector>().enabled = true;
+        this.GetComponent<PlayableDirector>().Play();
+    }
 }

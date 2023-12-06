@@ -199,6 +199,99 @@ MonoBehaviour:
   - {fileID: 8168199012049173334}
   - {fileID: -2807894212612607058}
   - {fileID: -4293753336891535080}
+  - {fileID: 5376353154566568318}
+  - {fileID: 7868938917067000850}
+--- !u!114 &5376353154566568318
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2250da75c7274d10bbf3229d78287f3, type: 3}
+  m_Name: NTSCEncode
+  m_EditorClassIdentifier: 
+  active: 0
+  enable:
+    m_OverrideState: 1
+    m_Value: 1
+  blur:
+    m_OverrideState: 1
+    m_Value: 0.01
+  brigtness:
+    m_OverrideState: 1
+    m_Value: 1
+  lineSpeed:
+    m_OverrideState: 0
+    m_Value: 0.01
+  mask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  maskChannel:
+    m_OverrideState: 0
+    m_Value: 0
+  GlobalPostProcessingSettings:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &7868938917067000850
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1c62bdc7f018b43a75aef3da42496f, type: 3}
+  m_Name: TVEffect
+  m_EditorClassIdentifier: 
+  active: 1
+  enable:
+    m_OverrideState: 1
+    m_Value: 1
+  fade:
+    m_OverrideState: 1
+    m_Value: 0.176
+  maskDark:
+    m_OverrideState: 0
+    m_Value: 0.5
+  maskLight:
+    m_OverrideState: 0
+    m_Value: 1.5
+  hardScan:
+    m_OverrideState: 0
+    m_Value: -8
+  resScale:
+    m_OverrideState: 0
+    m_Value: 4
+  ScaleWithActualScreenSize:
+    m_OverrideState: 0
+    m_Value: 0
+  hardPix:
+    m_OverrideState: 0
+    m_Value: -3
+  warpMode:
+    m_OverrideState: 0
+    m_Value: 0
+  warp:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0}
+  scale:
+    m_OverrideState: 0
+    m_Value: 0.5
+  mask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  maskChannel:
+    m_OverrideState: 0
+    m_Value: 0
+  GlobalPostProcessingSettings:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &8168199012049173334
 MonoBehaviour:
   m_ObjectHideFlags: 3
