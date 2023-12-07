@@ -182,7 +182,8 @@ A: No......
 
 [Song 4]
 //乐观主义白痴
-[EndRain]
+[StopRain]
+[NegativeOn]
 A: I saw my true faith
 A: I saw my true faith destroyed by you
 B: But we don't trust anything
@@ -212,12 +213,14 @@ A: We just need to sit in the classroom!!
 A: They told us not to try......
 A: They will solve this problem......
 A: I was......
+[NegativeOff]
 [EndOfSong]
 //屏幕出现光标,自动移动到画面里的屏幕上的中英切换按钮,全部画面开始Glitch
-[SwitchLanguage]
 
 [Song 5]
 //劣势高地
+[NegativeOff]
+[SwitchLanguage]
 A: 三个道士死于一场大火
 A: 而灾难的中心是乌托邦的轮廓
 A: 在不断被交换和考量中

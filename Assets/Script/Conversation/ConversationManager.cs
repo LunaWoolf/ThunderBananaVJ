@@ -9,6 +9,7 @@ using UnityEngine.Rendering.PostProcessing;
 using RetroLookPro.Enums;
 using LimitlessDev.RetroLookPro;
 using DigitalRuby.RainMaker;
+using UnityEngine.SceneManagement;
 
 public class ConversationManager : MonoSingleton<ConversationManager>
 {
@@ -61,6 +62,7 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     public UnityEngine.UI.Image OverlayImage;
     public UnityEngine.UI.Image OverlayBackImage;
     public GameObject DigitalRain;
+    public FrameAnimation headShake;
 
     [Header("Jitter")]
     public float jitterAmount = 5f; // Adjust the amount of jitter as needed
@@ -170,12 +172,37 @@ public class ConversationManager : MonoSingleton<ConversationManager>
         {
             End();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+            Destroy(this.gameObject);
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            if (headShake.isStopped)
+            {
+                headShake.Restart();
+            }
+            else
+            {
+                headShake.Stop();
+            }
+        }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { if (currentDialogue.songLineIndex.Count > 0) currentDialogueLineIndex = currentDialogue.songLineIndex[0]; EndOfSong(); }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { if (currentDialogue.songLineIndex.Count > 1) currentDialogueLineIndex = currentDialogue.songLineIndex[1]; EndOfSong(); }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) { if (currentDialogue.songLineIndex.Count > 2) currentDialogueLineIndex = currentDialogue.songLineIndex[2]; EndOfSong(); }
-        if (Input.GetKeyDown(KeyCode.Alpha4)) { if (currentDialogue.songLineIndex.Count > 3) currentDialogueLineIndex = currentDialogue.songLineIndex[3]; EndOfSong(); }
-        if (Input.GetKeyDown(KeyCode.Alpha5)) { if (currentDialogue.songLineIndex.Count > 4) currentDialogueLineIndex = currentDialogue.songLineIndex[4]; EndOfSong(); }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            NegativePostProcessing.SetActive(!NegativePostProcessing.activeSelf);
+       
+           
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha1)) { if (currentDialogue.songLineIndex.Count > 0) currentDialogueLineIndex = currentDialogue.songLineIndex[0]; EndOfSong(); EnableColormapPalette(true); }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) { if (currentDialogue.songLineIndex.Count > 1) currentDialogueLineIndex = currentDialogue.songLineIndex[1]; EndOfSong(); EnableColormapPalette(true); }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) { if (currentDialogue.songLineIndex.Count > 2) currentDialogueLineIndex = currentDialogue.songLineIndex[2]; EndOfSong(); EnableColormapPalette(true); }
+        if (Input.GetKeyDown(KeyCode.Alpha4)) { if (currentDialogue.songLineIndex.Count > 3) currentDialogueLineIndex = currentDialogue.songLineIndex[3]; EndOfSong(); EnableColormapPalette(true); }
+        if (Input.GetKeyDown(KeyCode.Alpha5)) { if (currentDialogue.songLineIndex.Count > 4) currentDialogueLineIndex = currentDialogue.songLineIndex[4]; EndOfSong(); EnableColormapPalette(true); }
         if (Input.GetKeyDown(KeyCode.Alpha6)) { if (currentDialogue.songLineIndex.Count > 5) currentDialogueLineIndex = currentDialogue.songLineIndex[5]; EndOfSong(); }
         if (Input.GetKeyDown(KeyCode.Alpha7)) { if (currentDialogue.songLineIndex.Count > 6) currentDialogueLineIndex = currentDialogue.songLineIndex[6]; EndOfSong(); }
     }
@@ -354,6 +381,17 @@ public class ConversationManager : MonoSingleton<ConversationManager>
             case "END":
                 End();
                 return;
+            case "EN":
+                End();
+                return;
+            case "NegativeOn":
+                EnableNegative(true);
+                LoadNextLineInCurrentDialogue();
+                return;
+            case "NegativeOff":
+                EnableNegative(false);
+                LoadNextLineInCurrentDialogue();
+                return;
 
 
         }
@@ -474,14 +512,22 @@ public class ConversationManager : MonoSingleton<ConversationManager>
     }
 
     [SerializeField] GameObject PixelPostProcessing;
-    [SerializeField] PostProcessProfile postProcessProfile;
-    [SerializeField] ColormapPalette _ColormapPalette;
+
 
     public void EnableColormapPalette(bool isOn)
     {
-        //postProcessProfile.GetSetting<ColormapPalette_RLPRO>().
-       // _ColormapPalette.active = isOn;
+       
         PixelPostProcessing.SetActive(isOn);
+
+    }
+
+    [SerializeField] GameObject NegativePostProcessing;
+
+
+    public void EnableNegative(bool isOn)
+    {
+
+        NegativePostProcessing.SetActive(isOn);
 
     }
 
@@ -498,12 +544,15 @@ public class ConversationManager : MonoSingleton<ConversationManager>
 
     public void ChangeToRed()
     {
-        OverlayBackImage.color = new Color(1f, 0f, 0f, 0.8f);
+        OverlayBackImage.color = new Color(0.7f, 0f, 0f, 1f);
     }
 
     public void End()
     {
         Debug.Log("ReachEnd");
+        StartLSD();
+        OverlayBackImage.color = new Color(0.7f, 0f, 0f, 0f);
+        //EnableColormapPalette(true);
         UpperDialogueBox.gameObject.SetActive(false);
         DownDialogueBox.gameObject.SetActive(false);
         this.GetComponent<PlayableDirector>().playableAsset = EndTimeline;
